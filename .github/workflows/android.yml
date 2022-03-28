@@ -47,7 +47,7 @@ jobs:
       with:
         api-level: 28
         avd-name: Pixel_API_28
-        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back
+        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
         script: yarn test:android-debug
 
 #    - name: Android Emulator
