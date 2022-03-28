@@ -27,7 +27,7 @@ jobs:
     - name: Download Android Emulator Image
       run: |
         echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;google_apis;x86"
-        echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name emu --device "Pixel_API_28" -k 'system-images;android-29;google_apis;x86'
+        echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name Pixel_API_28 --device "Nexus 5X" -k 'system-images;android-29;google_apis;x86'
         $ANDROID_HOME/emulator/emulator -list-avds
 
     - name: Install node_modules
