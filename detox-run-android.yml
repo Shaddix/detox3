@@ -37,7 +37,7 @@ stages:
             displayName: 'Start emulator'
 
           - script: |
-              yarn run-detox-ci
+              yarn yarn test:android-release
               $ANDROID_HOME/platform-tools/adb devices
             displayName: 'run tests'
 
