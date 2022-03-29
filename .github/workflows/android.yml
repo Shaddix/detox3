@@ -18,21 +18,6 @@ jobs:
       with:
         node-version: '16'
 
-    - name: Use specific Java version for sdkmanager to work
-      uses: joschi/setup-jdk@v2
-      with:
-        java-version: 'openjdk8'
-        architecture: 'x64'
-
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-
-#    - name: Download Android Emulator Image
-#      run: |
-#        echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;google_apis;x86"
-#        echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name Pixel_API_28 --device "Nexus 5X" -k 'system-images;android-29;google_apis;x86'
-#        $ANDROID_HOME/emulator/emulator -list-avds
-
     - name: Install node_modules
       run: |
         yarn install --frozen-lockfile
@@ -61,4 +46,4 @@ jobs:
 #        echo "Emulator started"
 #
 #    - name: Android Detox
-#      run: yarn test:android-debug
+#      run: yarn test:android-release
