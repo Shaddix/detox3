@@ -37,7 +37,7 @@ stages:
             displayName: 'Start emulator'
 
           - script: |
-              yarn yarn test:android-release
+              yarn test:android-release
               $ANDROID_HOME/platform-tools/adb devices
             displayName: 'run tests'
 

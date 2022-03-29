@@ -42,7 +42,6 @@ jobs:
         echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name Pixel_API_28 --abi 'default/x86' --package 'system-images;android-29;default;x86'
         $ANDROID_HOME/emulator/emulator -list-avds
 
-
     - name: Android Emulator
       timeout-minutes: 10
       continue-on-error: true
