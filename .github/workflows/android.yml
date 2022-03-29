@@ -40,7 +40,7 @@ jobs:
 
     - name: Build for detox
       run: |
-        yarn build:android-debug
+        yarn build:android-release
 
     - name: run tests
       uses: reactivecircus/android-emulator-runner@v2
@@ -48,7 +48,7 @@ jobs:
         api-level: 28
         avd-name: Pixel_API_28
         emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
-        script: yarn test:android-debug
+        script: yarn test:android-release
 
 #    - name: Android Emulator
 #      timeout-minutes: 10
