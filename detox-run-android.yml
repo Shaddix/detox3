@@ -12,12 +12,6 @@ stages:
     jobs:
       - job: Run_E2E_Tests
         steps:
-          - task: JavaToolInstaller@0
-            inputs:
-              versionSpec: '11'
-              jdkArchitectureOption: 'x64'
-              jdkSourceOption: 'PreInstalled'
-
           - script: |
               yarn install --frozen-lockfile
             displayName: 'yarn install'
