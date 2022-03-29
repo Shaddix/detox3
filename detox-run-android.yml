@@ -43,7 +43,3 @@ stages:
 
           - script: cat artifacts/**/*.log
             condition: failed()
-
-          - script: killall qemu-system-x86_64
-            displayName: 'Shut down the emulator'
-            condition: always()
