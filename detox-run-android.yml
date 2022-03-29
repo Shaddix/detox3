@@ -1,0 +1,55 @@
+trigger:
+  - none
+
+variables:
+  GRADLE_USER_HOME: $(Build.SourcesDirectory)/android/.gradle
+
+pool:
+  vmImage: 'macos-latest'
+
+stages:
+  - stage: E2E
+    jobs:
+      - job: Run_E2E_Tests
+        steps:
+          - task: JavaToolInstaller@0
+            inputs:
+              versionSpec: '11'
+              jdkArchitectureOption: 'x64'
+              jdkSourceOption: 'PreInstalled'
+
+          - script: |
+              yarn install --frozen-lockfile
+            displayName: 'yarn install'
+
+          - script: |
+              chmod +x ./android/gradlew
+              yarn build:android-detox
+            displayName: 'Build app for tests'
+
+          - script: |
+              echo "Download emulator"
+              echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator --channel=0 > /dev/null
+              echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;default;x86"
+              echo "no" | $ANDROID_HOME/tools/bin/avdmanager create avd --force --name Pixel_API_28 --abi 'default/x86' --package 'system-images;android-29;default;x86'
+              $ANDROID_HOME/emulator/emulator -list-avds
+            displayName: 'Download emulator'
+
+          - script: |
+              printf 'hw.cpu.ncore=2' >> /Users/runner/.android/avd/Pixel_API_28.avd/config.ini
+              nohup $ANDROID_HOME/emulator/emulator -avd Pixel_API_28 -no-audio -no-snapshot -no-window -gpu swiftshader_indirect -no-boot-anim &
+              $ANDROID_HOME/platform-tools/adb wait-for-device shell 'while [[ -z $(getprop sys.boot_completed | tr -d '\r') ]]; do sleep 1; done; input keyevent 82'
+              $ANDROID_HOME/platform-tools/adb devices
+            displayName: 'Start emulator'
+
+          - script: |
+              yarn run-detox-ci
+              $ANDROID_HOME/platform-tools/adb devices
+            displayName: 'run tests'
+
+          - script: cat artifacts/**/*.log
+            condition: failed()
+
+          - script: killall qemu-system-x86_64
+            displayName: 'Shut down the emulator'
+            condition: always()

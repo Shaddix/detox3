@@ -25,7 +25,7 @@ jobs:
 
     - name: Build for detox
       run: |
-        yarn build:android-release
+        yarn build:android-detox
 
 #    - name: run tests
 #      uses: reactivecircus/android-emulator-runner@v2
@@ -34,8 +34,6 @@ jobs:
 #        avd-name: Pixel_API_28
 #        emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
 #        script: yarn test:android-release
-
-
 
     - name: Download Android Emulator Image
       run: |

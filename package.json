@@ -9,7 +9,7 @@
     "build:ios-debug": "detox build --configuration ios.sim.debug",
     "build:ios-release": "detox build --configuration ios.sim.release",
     "build:android-debug": "detox build --configuration android.emu.debug",
-    "build:android-release": "detox build --configuration android.emu.release",
+    "build:android-detox": "detox build --configuration android.emu.release",
     "test:ios": "detox test --configuration ios.sim.debug",
     "test:ios-debug": "detox test --configuration ios.sim.debug",
     "test:ios-release": "detox test --configuration ios.sim.release",
