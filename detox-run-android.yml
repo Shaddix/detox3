@@ -22,6 +22,25 @@ stages:
             displayName: 'Build app for tests'
 
           - script: |
+              ls -laR android/app/build/outputs/apk
+            displayName: '123'
+
+          - task: AndroidSigning@3
+            inputs:
+              apkFiles: 'android/app/build/outputs/apk/release/app-release-unsigned.apk'
+              apksign: true # Optional
+              apksignerKeystoreFile: 'detox.keystore' # Required when apksign == True
+              apksignerKeystorePassword: 'wlWoWigjHau0'
+              apksignerKeystoreAlias: 'mcctemplateapp_dev'
+              apksignerKeyPassword: 'wlWoWigjHau0'
+
+
+          - script: |
+              ls -laR android/app/build/outputs/apk
+              echo "-------"
+            displayName: 'after signing'
+
+          - script: |
               echo "Download emulator"
               echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install emulator --channel=0 > /dev/null
               echo "y" | $ANDROID_HOME/tools/bin/sdkmanager --install "system-images;android-29;default;x86"

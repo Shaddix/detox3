@@ -32,21 +32,21 @@ android {
             include 'armeabi-v7a', 'x86', 'x86_64'
         }
     }
-    signingConfigs {
-        release {
-            storeFile file("keystore.jks")
-            storePassword "12345678"
-            keyAlias "key0"
-            keyPassword "12345678"
-        }
-    }
+//     signingConfigs {
+//         release {
+//             storeFile file("keystore.jks")
+//             storePassword "12345678"
+//             keyAlias "key0"
+//             keyPassword "12345678"
+//         }
+//     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             proguardFile "${rootProject.projectDir}/../node_modules/detox/android/detox/proguard-rules-app.pro"
 
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
         }
     }
 
