@@ -35,6 +35,15 @@ stages:
               apksignerKeyPassword: 'wlWoWigjHau0'
 
 
+          - task: AndroidSigning@3
+            inputs:
+              apkFiles: 'android/app/build/outputs/apk/androidTest/release/app-release-androidTest.apk'
+              apksign: true # Optional
+              apksignerKeystoreFile: 'detox.keystore' # Required when apksign == True
+              apksignerKeystorePassword: 'wlWoWigjHau0'
+              apksignerKeystoreAlias: 'mcctemplateapp_dev'
+              apksignerKeyPassword: 'wlWoWigjHau0'
+
           - script: |
               ls -laR android/app/build/outputs/apk
               echo "1-------"
