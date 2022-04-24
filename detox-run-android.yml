@@ -69,6 +69,3 @@ stages:
 
           - script: yarn test:android-release
             displayName: 'run tests'
-
-          - script: cat artifacts/**/*.log
-            condition: failed()
