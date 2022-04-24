@@ -67,9 +67,7 @@ stages:
               $ANDROID_HOME/platform-tools/adb devices
             displayName: 'Start emulator'
 
-          - script: |
-              yarn test:android-release
-              $ANDROID_HOME/platform-tools/adb devices
+          - script: yarn test:android-release
             displayName: 'run tests'
 
           - script: cat artifacts/**/*.log
